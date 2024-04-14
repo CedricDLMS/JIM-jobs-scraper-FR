@@ -9,7 +9,7 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36"
 }
 URLS = {
-    "indeed": "https://ph.indeed.com/jobs",
+    "indeed": "https://fr.indeed.com/jobs",
     "mynimo": "https://www.mynimo.com/cebu-jobs",
     "jobstreet": "https://www.jobstreet.com.ph/",
 }
@@ -96,7 +96,7 @@ def extract_site(
     if site == "indeed":
         url = (
             URLS[site]
-            + f"?q={skill_name.replace(' ', '+')}&l={location}&start={num_page * 10}"
+            + f"?q={skill_name.replace(' ', '+')}&l={location}&start={num_page * 10}&vjk=adc75c1a6f12f65c"
         )
     elif site == "mynimo":
         url = (
@@ -116,7 +116,7 @@ def extract_site(
     return soup
 
 
-def scrape_indeed(skill_name: str, location="Cebu", num_pages=1) -> None:
+def scrape_indeed(skill_name: str, location="Montpellier", num_pages=1) -> None:
     """
     Scrapes job listings from Indeed website based on provided parameters.
 
@@ -164,7 +164,7 @@ def scrape_indeed(skill_name: str, location="Cebu", num_pages=1) -> None:
                         job_location = job_div.find(
                             "div", attrs={"data-testid": "text-location"}
                         ).text.strip()
-                        job_link = f"https://ph.indeed.com/viewjob?jk={job_id}"
+                        job_link = f"https://fr.indeed.com/viewjob?jk={job_id}"
                         job_payload = {
                             "job_id": job_id,
                             "job_name": job_name,
